@@ -42,6 +42,13 @@ module Landlord
       end
     end
 
+    def with_tenant(tenant)
+      Thread.current[:tenant] = tenant
+      result = yield
+      clear!
+      result
+    end
+
     def clear!
       Thread.current[:tenant_host] = nil
       Thread.current[:tenant] = nil
