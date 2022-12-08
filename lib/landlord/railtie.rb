@@ -3,7 +3,7 @@
 module Landlord
   class Railtie < ::Rails::Railtie
     initializer "landlord.insert_middleware" do |app|
-      app.config.middleware.insert_after ActionDispatch::RequestId, Landlord::Middleware
+      app.config.middleware.insert_before ActionDispatch::Cookies, Landlord::Middleware
     end
   end
 end
